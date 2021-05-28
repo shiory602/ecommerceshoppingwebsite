@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import "./Top.css";
-import Header from '../Header';
-import Footer from '../Footer';
 import banner from "./banner.jpg";
 import dress from "./dress.jpg";
 import shoes from "./shoes.jpg";
@@ -19,7 +17,6 @@ export default function Top() {
     {console.log(products)}
     <div className="container">
         <div className="row">
-            <Header />
         </div>
         <div className="row mt-3">
             <img src={banner} alt="banner" width="100%" />
@@ -41,7 +38,6 @@ export default function Top() {
             <img src={banner} alt="banner" width="100%" />
         </div>
         <div className="row">
-            <Footer />
         </div>
     </div>
     </>
