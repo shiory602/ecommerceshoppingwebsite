@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Top.css";
 import $ from "jquery";
-import Product from '../Product/Product';
 
 $('#root').on('click', function() {
   console.log('click! yeah');
