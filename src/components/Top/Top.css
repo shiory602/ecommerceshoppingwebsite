@@ -1,0 +1,38 @@
+.hover {
+    position: relative;
+    width: 320px;
+    height: 460px;
+    overflow: hidden;
+}
+
+.hover .hover-img {
+    margin: 0;
+    padding: 0;
+}
+
+.hover-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.hover .hover-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+.hover .hover-text text {
+    padding: 0 20px 10px;
+}
+
+.hover:hover .hover-text {
+    opacity: 1;
+    padding-top: 210px;
+    padding-left: 120px;
+}
