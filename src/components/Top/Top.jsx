@@ -1,17 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import "./Top.css";
-import banner from "./banner.jpg";
-import dress from "./dress.jpg";
-import shoes from "./shoes.jpg";
-import bag from "./bag.jpg";
+import $ from "jquery";
+
+$('#root').on('click', function() {
+  console.log('click! yeah');
+})
 
 export default function Top() {
     const [products, setProducts] = useState([]);
+    const [galleryImages, setGalleryImages] = useState();
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
             .then((res) => res.json())
             .then((data) => setProducts(data))
+        /*--------------------
+        gallery
+        ----------------------*/
+        // showGallery();
+        // for(let i = 0; i > 20; i++) {
+        //     list.push(<img src={products[i].image} className="img-fluid" alt="banner" />);
+        // }
     }, []);
+    console.log(products);
+    
+    function showGallery() {
+        document.querySelector("#gallery").forEach(() => {
+            // #gallery element will be a container of gallery
+            let container = this;
+
+            // Setting options and prepare Masonry
+            container.masonry({
+                columnWidth: 230,
+                gutter: 10,
+                itemSelector: '.gallery-item'
+            })
+            let list = [];
+            products.forEach(item => {
+                setGalleryImages(
+                    <li className="gallery-item is-loading">
+                        <a href={item.image} alt={item.title}></a>
+                    </li>
+                )
+            })
+        });
+    }
+
     return(
     <>
     <div className="container">
@@ -71,7 +104,7 @@ export default function Top() {
         </div>
         <div className="row">
             <h2 className="m-4 d-flex justify-content-between">Feature</h2>
-            {products.length > 0 ? <img src={products[19].image} className="img-fluid" alt="banner" /> : <p>Loading Image...</p>}
+            {products.length > 0 ? <ul className="gallery" id="gallery">{galleryImages}</ul> : <p>Loading Image...</p>}
         </div>
     </div>
     </>
