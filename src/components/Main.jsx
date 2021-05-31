@@ -51,9 +51,9 @@ const Main = () => {
           <Route exact path='/'>
             <Top productsData={products} />
           </Route>
-          <Route exact path='/productDetails'>
+          {/* <Route exact path='/productDetails'>
             <ProductDetails data={products} />
-          </Route>
+          </Route> */}
           <Route exact path='/shop'>
             <Products categories={categories} productsData={products} />
           </Route>

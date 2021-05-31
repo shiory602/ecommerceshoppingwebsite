@@ -3,25 +3,25 @@ import './Product.css';
 import BagModal from '../BagModal/BagModal'
 
 export default function Product(props) {
-    const [state, setState] = useState(props.data)
-    const [id, setID] = useState(props.data.id)
+    const [state, setState] = useState(props.prodData[0])
+    // const [id, setID] = useState(props.data.id)
     return(
         <>
-        {console.log(state[1])}
-        <div className='Product container' key={id}>
+        {console.log(state)}
+        <div className='Product container' key={state.id}>
             <div className='row'>
                 <div className='col productImg'>
-                    <img src={state[1].image} alt="photo" width='300px' />
+                    <img src={state.image} alt="photo" width='300px' />
                     <div className='smallImgs'>
-                        <img src={state[1].image} alt="photo" width='70px' />
-                        <img src={state[1].image} alt="photo" width='70px' />
-                        <img src={state[1].image} alt="photo" width='70px' />
-                        <img src={state[1].image} alt="photo" width='70px' />
+                        <img src={state.image} alt="photo" width='70px' />
+                        <img src={state.image} alt="photo" width='70px' />
+                        <img src={state.image} alt="photo" width='70px' />
+                        <img src={state.image} alt="photo" width='70px' />
                     </div>
                 </div>
                 <div className='col'>
-                    <h1>{state[1].title}</h1>
-                    <p>${state[1].price}</p>
+                    <h1>{state.title}</h1>
+                    <p>${state.price}</p>
                     <div>Rating</div>
                     <div className='color'>
                         <p>Color</p>
@@ -42,7 +42,7 @@ export default function Product(props) {
             <div className='row'>
                 <div className='col Description'>
                     <h2>Description</h2>
-                    <p>{state[1].description}</p>
+                    <p>{state.description}</p>
                 </div>
             </div>
         </div>

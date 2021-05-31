@@ -13,9 +13,9 @@ export default function BagModal(props) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src={props.data[1].image} alt="photo" width='100px' />
-                    <h5>{props.data[1].title}</h5>
-                    <p>${props.data[1].price}</p>
+                    <img src={props.data.image} alt="photo" width='100px' />
+                    <h5>{props.data.title}</h5>
+                    <p>${props.data.price}</p>
                     
                     <button>Go to Cart</button>
                 </div>
