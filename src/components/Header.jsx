@@ -3,7 +3,7 @@ import logo from "../logo/logo.png";
 import { Link } from "react-router-dom";
 
 
-export default function Header () {
+export default function Header (props) {
     return (
         <>
         <ul className="nav d-flex justify-content-between">
@@ -19,10 +19,10 @@ export default function Header () {
                 </a>
             </li>
             <li className="nav-item row">
-                <Link to="/">Home</Link>
+                <Link to={{pathname: "/"}}>Home</Link>
             </li>
             <li className="nav-item">
-                <Link to="/product">Product</Link>
+                <Link to={{pathname: "/product", state: props.data}}>Product</Link>
             </li>
             <li className="nav-item">
                 <a className="nav-link" href="#">

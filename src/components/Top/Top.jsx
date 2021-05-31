@@ -5,7 +5,7 @@ import dress from "./dress.jpg";
 import shoes from "./shoes.jpg";
 import bag from "./bag.jpg";
 
-export default function Top() {
+export default function Top(props) {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
@@ -19,7 +19,9 @@ export default function Top() {
         <div className="row">
         </div>
         <div className="row mt-3">
-            <img src={banner} alt="banner" width="100%" />
+        {products.length > 0 ?
+            <img src={products[0].image} alt="banner" width="100%" />:<p>Loading Image...</p>
+        }
         </div>
         <div className="row">
             <h2 className="m-4 d-flex justify-content-between">Categories</h2>
