@@ -40,14 +40,7 @@
 /* -----------------
 gallery
 -------------------*/
-.gallery {
-    margin: 0;
-    padding: 0;
-}
-.gallery-item {
-    list-style: none;
-    margin-top: 10px;
-}
-.gallery-item.is-loading {
-    opacity: 0;
+.product-image {
+    width: 32% !important;
+    height: 32% !important;
 }
