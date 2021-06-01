@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Top.css";
+import { Link } from 'react-router-dom';
 
 export default function Top(props) {
+    const [future, setFuture] = useState([]);
+
+    useEffect(() => {
+        let array = [];
+        for(let i = 0; i < 7; i++) {
+            array.push(props.productsData[i]);
+        }
+        setFuture(array);
+    }, [])
+
     return(
     <>
     <div className="container">
@@ -30,9 +41,10 @@ export default function Top(props) {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-            {/* -------------- Carousel: START -------------- */}
+            {/* -------------- Carousel: END -------------- */}
         </div>
         <div className="row m-4">
+            {/* -------------- Categories: START -------------- */}
             <h1 className="m-4 p-3 d-flex justify-content-between">Categories</h1>
             <div className="col hover"> 
                 <a href="/">
@@ -52,10 +64,22 @@ export default function Top(props) {
                     <div className="hover-text hidden"><p className="text h3">Jewelries</p></div>
                 </a>
             </div>
+            {/* -------------- Carousel: END -------------- */}
         </div>
         <div className="row m-4 p-3">
+            {/* -------------- Futures: START -------------- */}
             <h1 className="m-4 d-flex flex-wrap">Feature</h1>
-            {props.productsData.map(product => <img src={product.image} className="product-image" alt={product.title} />)}
+            {/* {props.productsData.map(product => */}
+            {future.map(product =>
+                <div className="col future-hover">
+                    <Link to={`/shop/${product.id}/${product.url}`}>
+                        <div className="future-img"><img src={product.image} alt={product.title} /></div>
+                        <div className="future-text hidden"><p className="text1 h3">{product.title}</p></div>
+                    </Link>
+                </div>
+            )}
+            <Link to={`/shop`} className="btn">Shop all &gt;</Link>
+            {/* -------------- Futures: END -------------- */}
         </div>
     </div>
     </>
