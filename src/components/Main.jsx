@@ -65,7 +65,7 @@ const Main = () => {
           </Route>
           <Route component={PageNotFound} />
         </Switch>
-        <Footer />
+        <Footer categories={categories} />
       </>
     }
     </>
