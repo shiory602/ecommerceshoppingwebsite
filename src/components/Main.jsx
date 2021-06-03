@@ -8,6 +8,7 @@ import Top from './Top/Top';
 import Products from './Products/Products';
 import PageNotFound from './PageNotFound/PageNotFound';
 import ProductDetails from './Products/ProductDetails/ProductDetails'
+import Checkout from './Checkout/Checkout';
 
 const Main = () => {
   const [categories, setCategories] = useState([]);
@@ -54,6 +55,11 @@ const Main = () => {
           {/* <Route exact path='/productDetails'>
             <ProductDetails data={products} />
           </Route> */}
+          
+          <Route exact path='/checkout'>
+            <Checkout categories={categories} productsData={products} />
+          </Route>
+
           <Route exact path='/shop'>
             <Products categories={categories} productsData={products} />
           </Route>
