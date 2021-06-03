@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom'
 import ProductDetails from './ProductDetails/ProductDetails'
 import ProductList from './ProductList/ProductList'
 
-import './Products.css'
-
 const Products = (props) => {
     const [page, setPage] = useState('')
     const [productsData, setProductsData] = useState(props.productsData)
