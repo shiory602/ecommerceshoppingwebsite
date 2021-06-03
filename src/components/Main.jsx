@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Top from './Top/Top';
 import Products from './Products/Products';
 import PageNotFound from './PageNotFound/PageNotFound';
+import Checkout from './Checkout/Checkout';
 
 const Main = () => {
   const [categories, setCategories] = useState([]);
@@ -65,23 +66,32 @@ const Main = () => {
           <Route exact path='/'>
             <Top productsData={products} />
           </Route>
+
           <Route exact path='/shop'>
             <Products categories={categories} productsData={products} />
           </Route>
+
           <Route exact path='/shop/:categoryId'>
             <Products categories={categories} productsData={products} />
           </Route>
+
           <Route exact path='/shop/:categoryId/:productUrl'>
             <Products categories={categories} productsData={products} />
           </Route>
+
           {/* <Route exact path='/cart'>
             <Cart products={cart}/>
           </Route> */}
+
+          <Route exact path='/checkout'>
+            <Checkout categories={categories} productsData={products} />
+          </Route>
+
           <Route>
             <PageNotFound categories={categories} />
           </Route>
         </Switch>
-        <Footer />
+        <Footer categories={categories} />
       </BrowserRouter>
     }
     </>
