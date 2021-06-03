@@ -2,27 +2,23 @@ import React, { useState, useEffect } from 'react';
 import "./Top.css";
 import $ from "jquery";
 
-$('#root').on('click', function() {
-  console.log('click! yeah');
-})
-
 export default function Top(props) {
     const [products, setProducts] = useState([]);
     const [galleryImages, setGalleryImages] = useState();
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-            .then((res) => res.json())
-            .then((data) => setProducts(data))
-            .then(setLoading(false))
-        /*--------------------
-        gallery
-        ----------------------*/
-        // showGallery();
-        // for(let i = 0; i > 20; i++) {
-        //     list.push(<img src={products[i].image} className="img-fluid" alt="banner" />);
-        // }
-    }, []);
+    // useEffect(() => {
+    //     fetch('https://fakestoreapi.com/products')
+    //         .then((res) => res.json())
+    //         .then((data) => setProducts(data))
+    //         .then(setLoading(false))
+    //     /*--------------------
+    //     gallery
+    //     ----------------------*/
+    //     // showGallery();
+    //     // for(let i = 0; i > 20; i++) {
+    //     //     list.push(<img src={products[i].image} className="img-fluid" alt="banner" />);
+    //     // }
+    // }, []);
     console.log(products);
     
     // if (loading == false) {

@@ -4,7 +4,39 @@ import BagModal from '../BagModal/BagModal'
 
 export default function Product(props) {
     const [state, setState] = useState(props.prodData[0])
-    // const [id, setID] = useState(props.data.id)
+    const [color, setColor] = useState()
+    const [size, setSize] = useState()
+    const addToCart = (quantity) => {
+        let data = state;
+        data.quantity = quantity;
+        data.size = size;
+        data.color = color;
+        props.cartChange(data);
+    }
+    const selectSize = (e,num) => {
+        for (let i = 0;i<4;i++){
+            document.getElementsByClassName('sizeNum')[i].style.backgroundColor='white';
+            document.getElementsByClassName('sizeNum')[i].style.color='black';
+        }
+        e.target.style.backgroundColor='black'; 
+        e.target.style.color='white';
+        setSize(num);
+        let data = state;
+        data.size = size;
+        setState(data);
+    }
+    const selectColor = (e,col) => {
+        for (let i = 0;i<3;i++){
+            document.getElementsByClassName('colorSel')[i].style.transform='scale(1)';
+            document.getElementsByClassName('colorSel')[i].style.border='transparent';
+        }
+        e.target.style.transform='scale(1.1)'; 
+        e.target.style.border='1px solid black'; 
+        setColor(col);
+        let data = state;
+        data.color = color;
+        setState(data);
+    }
     return(
         <>
         {console.log(state)}
@@ -22,18 +54,18 @@ export default function Product(props) {
                 <div className='col'>
                     <h1>{state.title}</h1>
                     <p>${state.price}</p>
-                    <div>Rating</div>
                     <div className='color'>
-                        <p>Color</p>
-                        <button style={{'background-color':'red'}}>  </button>
-                        <button style={{'background-color':'green'}}>  </button>  
+                        <h5>Color</h5>
+                        <button className='colorSel' onClick={(e)=> selectColor(e,'black')} style={{'background-color':'rgb(24, 21, 21)'}}></button>
+                        <button className='colorSel' onClick={(e)=> selectColor(e,'blue')} style={{'background-color':'rgb(76, 55, 196)'}}></button>
+                        <button className='colorSel' onClick={(e)=> selectColor(e,'white')} style={{'background-color':'rgb(235, 217, 217)'}}></button>  
                     </div>
                     <div className='size'>
-                        <h3>Size</h3>
-                        <p style={{'border':'1px solid black','padding':'5px','width':'40px'}}>8</p>
-                        <p style={{'border':'1px solid black','padding':'5px','width':'40px'}}>9</p>
-                        <p style={{'border':'1px solid black','padding':'5px','width':'40px'}}>10</p>
-                        <p style={{'border':'1px solid black','padding':'5px','width':'40px'}}>11</p>
+                        <h5>Size</h5>
+                        <p className='sizeNum' onClick={(e)=> selectSize(e,8)}>8</p>
+                        <p className='sizeNum' onClick={(e)=> selectSize(e,9)}>9</p>
+                        <p className='sizeNum' onClick={(e)=> selectSize(e,10)}>10</p>
+                        <p className='sizeNum' onClick={(e)=> selectSize(e,11)}>11</p>
                     </div>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add to Cart</button>
                     <button>Buy now</button>
@@ -46,7 +78,7 @@ export default function Product(props) {
                 </div>
             </div>
         </div>
-        <BagModal data = {state} />
+        <BagModal data={state} color={color} size={size} cart={addToCart} />
         </>
     )
 }

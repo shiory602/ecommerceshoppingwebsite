@@ -7,13 +7,22 @@ import Footer from './Footer';
 import Top from './Top/Top';
 import Products from './Products/Products';
 import PageNotFound from './PageNotFound/PageNotFound';
-import ProductDetails from './Products/ProductDetails/ProductDetails'
+import Cart from './Cart/Cart'
 
 const Main = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [cart, setCart] = useState([]);
+  const handleCart = (data) => {
+    let newCart = cart;
+    const check = (element) => (element === data);
+    if (!cart.some(check)) {
+      newCart.push(data);
+      setCart(newCart);
+      console.log(cart)
+    }
+  }
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
@@ -61,7 +70,10 @@ const Main = () => {
             <Products categories={categories} productsData={products} />
           </Route>
           <Route exact path='/shop/:categoryId/:productUrl'>
-            <Products categories={categories} productsData={products} />
+            <Products categories={categories} productsData={products} cart={handleCart}/>
+          </Route>
+          <Route exact path='/cart'>
+            <Cart products={cart}/>
           </Route>
           <Route component={PageNotFound} />
         </Switch>
