@@ -1,4 +1,5 @@
 import React from 'react';
+import './CheckoutMain.css';
 
 export default function Checkout(props) {
     return(
@@ -12,15 +13,31 @@ export default function Checkout(props) {
                     <li class="breadcrumb-item active" aria-current="page">Payment</li>
                 </ol>
             </nav>
-            <span>Express checkout</span>
-            <div class="d-grid gap-2 d-md-block border-top-0">
-                <button type="button" class="btn btn-primary">Shop Pay</button>
-                <button type="button" class="btn btn-dark">Google Pay</button>
-                <button type="button" class="btn btn-warning">Pay pal</button>
+            <div className="text-center">
+            <div className="row mb-1">
+                <div className="col"></div>
+                <div className="border-bottom col-1 mb-2"></div>
+                <span className="col mt-4 text-center">Express checkout</span>
+                <div className="border-bottom col-1 mb-2"></div>
+                <div className="col"></div>
+            </div>
+            <div className="row">
+                <div className="col"></div>
+                <div class="col-6 d-flex justify-content-center border-start border-end border-bottom pb-2">
+                    <button type="button" class="btn btn-primary m-1">Shop Pay</button>
+                    <button type="button" class="btn btn-dark m-1">Google Pay</button>
+                    <button type="button" class="btn btn-warning m-1">Pay pal</button>
+                </div>
+                <div className="col"></div>
+            </div>
             </div>
             
-
-            <span className="or-line">OR</span>
+            <div className="row mb-5">
+                <div className="border-bottom col-5 mb-2"></div>
+                <span className="col mt-3 text-center">OR</span>
+                <div className="border-bottom col-5 mb-2"></div>
+            </div>
+            
 
             <form class="row g-3">
             <div class="col-12">
@@ -91,8 +108,8 @@ export default function Checkout(props) {
                 <input type="text" class="form-control" id="inputCity" placeholder="Phone (optional)" />
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-lg">Continue to shipping</button>
-                <button type="submit" class="btn btn-light btn-lg">Return to cart</button>
+                <button type="submit" class="btn btn-primary btn-lg m-1">Continue to shipping</button>
+                <button type="submit" class="btn btn-light btn-lg m-1">Return to cart</button>
             </div>
             </form>
         </div>
