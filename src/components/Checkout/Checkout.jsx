@@ -15,13 +15,9 @@ export default function Checkout(props) {
     return(
         <>
         <div className='d-flex justify-content-center'>
-<<<<<<< HEAD
-            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} /> : <CheckoutShipping />}
-            <CheckoutSide categories={props.categories} productsData={props.productsData} />
-=======
-            <CheckoutMain products={props.products}/>
+            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} categories={props.categories} products={props.products} /> : <CheckoutShipping handleClick={handleClick} categories={props.categories} />}
+            {/* <CheckoutMain products={props.products}/> */}
             <CheckoutSide products={props.products} />
->>>>>>> 407263f67d8d3df1558f312404eedade75655b9b
         </div>
 
         <Switch>
