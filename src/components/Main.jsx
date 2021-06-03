@@ -85,12 +85,8 @@ const Main = () => {
             <Cart products={cart}/>
           </Route>
 
-          {/* <Route exact path='/cart'>
-            <Cart products={cart}/>
-          </Route> */}
-
           <Route exact path='/checkout'>
-            <Checkout categories={categories} productsData={products} />
+            <Checkout products={cart} />
           </Route>
 
           <Route>
