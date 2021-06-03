@@ -1,15 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function CheckoutInformation() {
+export default function CheckoutInformation(props) {
+    
     return(
         <div className='d-flex flex-column m-5'>
             <h2>CGS</h2>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Cart</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Information</li>
-                    <li class="breadcrumb-item active" aria-current="page">Shipping</li>
-                    <li class="breadcrumb-item active" aria-current="page">Payment</li>
+                    <li class="breadcrumb-item">
+                        <Link className="text-reset" role="button" aria-expanded="false">Cart</Link>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <Link className="text-reset" role="button" aria-expanded="false">Information</Link>
+                    </li>
+                    <li class="breadcrumb-item active disabled" aria-current="page">
+                        <Link className="text-reset" role="button" aria-expanded="false">Shipping</Link>
+                    </li>
+                    <li class="breadcrumb-item active disabled" aria-current="page">
+                        <Link className="text-reset" role="button" aria-expanded="false">Payment</Link>
+                    </li>
                 </ol>
             </nav>
             <div className="text-center">
@@ -107,7 +117,7 @@ export default function CheckoutInformation() {
                 <input type="text" class="form-control" id="inputCity" placeholder="Phone (optional)" />
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-lg m-1">Continue to shipping</button>
+                <button type="submit" onClick={() => props.handleClick('Shipping')} class="btn btn-primary btn-lg m-1">Continue to shipping</button>
                 <button type="submit" class="btn btn-light btn-lg m-1">Return to cart</button>
             </div>
             </form>

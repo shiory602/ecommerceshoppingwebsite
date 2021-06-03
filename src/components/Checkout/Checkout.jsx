@@ -1,18 +1,21 @@
-import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import CheckoutInformation from './CheckoutMain/CheckoutInformation';
 import CheckoutShipping from './CheckoutMain/CheckoutShipping';
-import PageNotFound from '../PageNotFound/PageNotFound';
+// import PageNotFound from '../PageNotFound/PageNotFound';
 
 import CheckoutSide from './CheckoutSide/CheckoutSide';
 
 export default function Checkout(props) {
+    const [check, setCheck] = useState('Information');
+    const handleClick = (v) => {
+        setCheck(v);
+    }
+
     return(
         <>
         <div className='d-flex justify-content-center'>
-            <Link to='./CheckoutMain/CheckoutInformation.jsx'>Informationへ</Link>
-            <Link to='./CheckoutMain/CheckoutShipping.jsx'>Shipping</Link>
-            <Link to='/'></Link>
+            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} /> : <CheckoutShipping />}
             <CheckoutSide categories={props.categories} productsData={props.productsData} />
         </div>
 
@@ -23,7 +26,7 @@ export default function Checkout(props) {
             <Route exact path='/checkoutshipping'>
                 <CheckoutShipping />
             </Route>
-            <Route component={PageNotFound} />
+            {/* <Route component={PageNotFound} /> */}
         </Switch>
         </>
     )
