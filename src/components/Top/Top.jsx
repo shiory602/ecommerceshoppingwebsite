@@ -1,48 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import "./Top.css";
-import $ from "jquery";
+import { Link } from 'react-router-dom';
 
 export default function Top(props) {
-    const [products, setProducts] = useState([]);
-    const [galleryImages, setGalleryImages] = useState();
-    const [loading, setLoading] = useState(true);
-    // useEffect(() => {
-    //     fetch('https://fakestoreapi.com/products')
-    //         .then((res) => res.json())
-    //         .then((data) => setProducts(data))
-    //         .then(setLoading(false))
-    //     /*--------------------
-    //     gallery
-    //     ----------------------*/
-    //     // showGallery();
-    //     // for(let i = 0; i > 20; i++) {
-    //     //     list.push(<img src={products[i].image} className="img-fluid" alt="banner" />);
-    //     // }
-    // }, []);
-    console.log(products);
-    
-    // if (loading == false) {
-    //     document.querySelector("#gallery").forEach(() => {
-    //         // #gallery element will be a container of gallery
-    //         let container = this;
+    const [future, setFuture] = useState([]);
 
-    //         // Setting options and prepare Masonry
-    //         container.masonry({
-    //             columnWidth: 230,
-    //             gutter: 10,
-    //             itemSelector: '.gallery-item'
-    //         })
-    //         let list = [];
-    //         products.forEach(item => {
-    //             setGalleryImages(
-    //                 <li className="gallery-item is-loading">
-    //                     <a href={item.image} alt={item.title}></a>
-    //                 </li>
-    //             )
-    //         })
-    //     });
-    // }
-    // showGallery();
+    useEffect(() => {
+        let array = [];
+        for(let i = 0; i < 7; i++) {
+            array.push(props.productsData[i]);
+        }
+        setFuture(array);
+    }, [])
 
     return(
     <>
@@ -50,20 +19,17 @@ export default function Top(props) {
         <div className="row">
         </div>
         <div className="row mt-3">
-        {products.length > 0 ?
-            <img src={products[0].image} alt="banner" width="100%" />:<p>Loading Image...</p>
-        }
             {/* -------------- Carousel: START -------------- */}
             <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                    {products.length > 0 ? <a href="/"><img src={products[5].image} className="d-block w-100" alt="banner" /></a> : <p>Loading Image...</p>}
+                    <a href="/"><img src={props.productsData[5].image} className="d-block w-100" alt={props.productsData[5].title} /></a>
                     </div>
                     <div className="carousel-item">
-                    {products.length > 0 ? <a href="/"><img src={products[7].image} className="d-block w-100" alt="banner" /></a> : <p>Loading Image...</p>}
+                    <a href="/"><img src={props.productsData[7].image} className="d-block w-100" alt={props.productsData[7].title} /></a>
                     </div>
                     <div className="carousel-item">
-                    {products.length > 0 ? <a href="/"><img src={products[5].image} className="d-block w-100" alt="banner" /></a> : <p>Loading Image...</p>}
+                    <a href="/"><img src={props.productsData[5].image} className="d-block w-100" alt={props.productsData[5].title} /></a>
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -75,38 +41,45 @@ export default function Top(props) {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-            {/* -------------- Carousel: START -------------- */}
+            {/* -------------- Carousel: END -------------- */}
         </div>
-        <div className="row">
-            <h2 className="m-4 d-flex justify-content-between">Categories</h2>
-            <div className="col hover">
-                {products.length > 0  ? 
+        <div className="row m-4">
+            {/* -------------- Categories: START -------------- */}
+            <h1 className="m-4 p-3 d-flex justify-content-between">Categories</h1>
+            <div className="col hover"> 
                 <a href="/">
-                    <div className="hover-img"><img src={products[19].image} className="img-fluid" alt="banner" /></div>
-                    <div className="hover-text hidden"><p className="text h2">Women's Clothes</p></div>
-                </a> :
-                <p>Loading Image...</p>}
+                <div className="hover-img"><img src={props.productsData[12].image} className="img-fluid" alt={props.productsData[12].title} /></div>
+                    <div className="hover-text hidden"><p className="text h3">Women's Clothes</p></div>
+                </a>
             </div>
             <div className="col hover">
-                {products.length > 0 ?
                 <a href="/">
-                    <div className="hover-img"><img src={products[2].image} className="img-fluid" alt="banner" /></div>
-                    <div className="hover-text hidden"><p className="text h2">Men's Clothes</p></div>
-                </a> :
-                <p>Loading Image...</p>}
+                    <div className="hover-img"><img src={props.productsData[2].image} className="img-fluid" alt={props.productsData[2].title} /></div>
+                    <div className="hover-text hidden"><p className="text h3">Men's Clothes</p></div>
+                </a>
             </div>
             <div className="col hover">
-                {products.length > 0 ?
                 <a href="/">
-                    <div className="hover-img"><img src={products[6].image} className="img-fluid" alt="banner" /></div>
-                    <div className="hover-text hidden"><p className="text h2">Jewelries</p></div>
-                </a> :
-                <p>Loading Image...</p>}
+                    <div className="hover-img"><img src={props.productsData[6].image} className="img-fluid" alt={props.productsData[6].title} /></div>
+                    <div className="hover-text hidden"><p className="text h3">Jewelries</p></div>
+                </a>
             </div>
+            {/* -------------- Carousel: END -------------- */}
         </div>
-        <div className="row">
-            <h2 className="m-4 d-flex justify-content-between">Feature</h2>
-            {products.length > 0  ? products.map(product => <img src={product.image}/>) : <p>Loading Image...</p>}
+        <div className="row m-4 p-3">
+            {/* -------------- Futures: START -------------- */}
+            <h1 className="m-4 d-flex flex-wrap">Feature</h1>
+            {/* {props.productsData.map(product => */}
+            {future.map(product =>
+                <div className="col future-hover">
+                    <Link to={`/shop/${product.id}/${product.url}`}>
+                        <div className="future-img"><img src={product.image} alt={product.title} /></div>
+                        <div className="future-text hidden"><p className="text1 h3">{product.title}</p></div>
+                    </Link>
+                </div>
+            )}
+            <Link to={`/shop`} className="btn">Shop all &gt;</Link>
+            {/* -------------- Futures: END -------------- */}
         </div>
     </div>
     </>

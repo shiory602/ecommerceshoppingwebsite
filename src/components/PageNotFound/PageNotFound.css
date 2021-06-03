@@ -1,0 +1,28 @@
+.page-not-found-section {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.page-not-found-section h1 {
+  margin-bottom: 0;
+  font-size: 82px;
+}
+
+.page-not-found-section h2 {
+  margin-bottom: 20px;
+  font-size: 42px;
+  text-transform: uppercase;
+}
+
+.page-not-found-section ul {
+  margin: 0;
+  padding: 0;
+}
+
+.page-not-found-section ul li {
+  padding: 0 15px;
+  font-weight: 700;
+  list-style: none;
+  display: inline-block;
+}
+/*# sourceMappingURL=PageNotFound.css.map */

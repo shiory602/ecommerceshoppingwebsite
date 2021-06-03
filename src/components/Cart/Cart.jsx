@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import $ from 'jquery';
 import './Cart.css'
 
@@ -46,6 +47,9 @@ export default function Cart(props) {
                 </div>
                 )}
             <h3>Subtotal: {total2}</h3>
+            <Link to="/checkout">
+                <button>Check Out</button>
+            </Link>
         </div>
         
     )
