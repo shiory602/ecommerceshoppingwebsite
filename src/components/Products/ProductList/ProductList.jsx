@@ -2,7 +2,7 @@ import React from 'react'
 import ProductSidebar from '../ProductSidebar/ProductSidebar'
 import ProductCard from '../ProductCard/ProductCard'
 
-import './ProductList.scss'
+import './ProductList.css'
 
 const ProductList = (props) => {
     return (
