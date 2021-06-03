@@ -26,6 +26,7 @@ const Main = () => {
       console.log(cart)
     }
   }
+  
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
