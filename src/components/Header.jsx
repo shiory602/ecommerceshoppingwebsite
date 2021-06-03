@@ -31,11 +31,6 @@ export default function Header (props) {
                         <span className="mx-3 p-2">Cart</span>
                     </Link>
                 </li>
-                <li className="nav-item">
-                    <Link to="/checkout" className="nav-link text-reset">
-                        <span className="mx-3 p-2">Checkout</span>
-                    </Link>
-                </li>
             </ul>
         </header>
     )

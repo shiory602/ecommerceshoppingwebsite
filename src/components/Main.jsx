@@ -7,8 +7,9 @@ import Footer from './Footer';
 
 import Top from './Top/Top';
 import Products from './Products/Products';
-import PageNotFound from './PageNotFound/PageNotFound';
+// import Cart from './Cart/Cart';
 import Checkout from './Checkout/Checkout';
+import PageNotFound from './PageNotFound/PageNotFound';
 
 const Main = () => {
   const [categories, setCategories] = useState([]);
@@ -62,6 +63,7 @@ const Main = () => {
     :
       <BrowserRouter>
         <Header categories={categories} />
+
         <Switch> {/* The Switch decides which component to show based on the current URL.*/}
           <Route exact path='/'>
             <Top productsData={products} />
@@ -91,6 +93,7 @@ const Main = () => {
             <PageNotFound categories={categories} />
           </Route>
         </Switch>
+
         <Footer categories={categories} />
       </BrowserRouter>
     }
