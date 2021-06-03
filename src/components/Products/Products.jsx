@@ -10,6 +10,10 @@ const Products = (props) => {
 
     const { categoryId, productUrl } = useParams()
 
+    const handleCartChange = (data) => {
+        props.cart(data)
+    }
+
     useEffect(() => {
         let prodData = []
 
@@ -31,7 +35,7 @@ const Products = (props) => {
     return (
         (page === 'ProductDetails')
         ?
-            <ProductDetails prodData={productsData} />
+            <ProductDetails prodData={productsData} cartChange={handleCartChange}/>
         :
             <ProductList categories={props.categories} categoryId={categoryId} prodData={productsData} />
     )

@@ -1,0 +1,33 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.modal-dialog {
+  max-width:70%;
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    margin: 10px;
+  }
+  p {
+    width: max-content;
+    margin: 5px;
+  }
+  h5 {
+    width: 30%;
+    font-size: 16px;
+  }
+  .addToCart {
+    width: 90px;
+    font-size: 12px;
+  }
+  button, input {
+    height: 40px;
+    width: 30px;
+  }
+  
+}

@@ -10,6 +10,7 @@ import Products from './Products/Products';
 // import Cart from './Cart/Cart';
 import Checkout from './Checkout/Checkout';
 import PageNotFound from './PageNotFound/PageNotFound';
+import Cart from './Cart/Cart'
 
 const Main = () => {
   const [categories, setCategories] = useState([]);
@@ -25,7 +26,7 @@ const Main = () => {
       console.log(cart)
     }
   }
-
+  
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
@@ -78,7 +79,10 @@ const Main = () => {
           </Route>
 
           <Route exact path='/shop/:categoryId/:productUrl'>
-            <Products categories={categories} productsData={products} />
+            <Products categories={categories} productsData={products} cart={handleCart}/>
+          </Route>
+          <Route exact path='/cart'>
+            <Cart products={cart}/>
           </Route>
 
           {/* <Route exact path='/cart'>
