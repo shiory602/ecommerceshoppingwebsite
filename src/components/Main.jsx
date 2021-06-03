@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import logo from "../logo/logo.png";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -7,12 +8,21 @@ import Footer from './Footer';
 import Top from './Top/Top';
 import Products from './Products/Products';
 import PageNotFound from './PageNotFound/PageNotFound';
-import ProductDetails from './Products/ProductDetails/ProductDetails'
 
 const Main = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState([]);
+  const handleCart = (data) => {
+    let newCart = cart;
+    const check = (element) => (element === data);
+    if (!cart.some(check)) {
+      newCart.push(data);
+      setCart(newCart);
+      console.log(cart)
+    }
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -43,17 +53,18 @@ const Main = () => {
 
   return (
     <>
-    {loading ? <p>loading</p> : 
-      <>
+    {loading
+    ?
+      <div className="loading">
+        <img src={logo} alt="logo" />
+      </div>
+    :
+      <BrowserRouter>
         <Header categories={categories} />
         <Switch> {/* The Switch decides which component to show based on the current URL.*/}
-          
           <Route exact path='/'>
             <Top productsData={products} />
           </Route>
-          {/* <Route exact path='/productDetails'>
-            <ProductDetails data={products} />
-          </Route> */}
           <Route exact path='/shop'>
             <Products categories={categories} productsData={products} />
           </Route>
@@ -63,10 +74,15 @@ const Main = () => {
           <Route exact path='/shop/:categoryId/:productUrl'>
             <Products categories={categories} productsData={products} />
           </Route>
-          <Route component={PageNotFound} />
+          {/* <Route exact path='/cart'>
+            <Cart products={cart}/>
+          </Route> */}
+          <Route>
+            <PageNotFound categories={categories} />
+          </Route>
         </Switch>
         <Footer />
-      </>
+      </BrowserRouter>
     }
     </>
   );
