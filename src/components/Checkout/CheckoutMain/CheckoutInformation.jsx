@@ -1,7 +1,6 @@
 import React from 'react';
-import './CheckoutMain.css';
 
-export default function Checkout(props) {
+export default function CheckoutInformation() {
     return(
         <div className='d-flex flex-column m-5'>
             <h2>CGS</h2>
