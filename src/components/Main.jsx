@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import logo from "../logo/logo.png";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer';
 
 import Top from './Top/Top';
 import Products from './Products/Products';
+// import Cart from './Cart/Cart';
+import Checkout from './Checkout/Checkout';
 import PageNotFound from './PageNotFound/PageNotFound';
 import Cart from './Cart/Cart'
 
@@ -23,6 +26,7 @@ const Main = () => {
       console.log(cart)
     }
   }
+  
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
@@ -52,33 +56,50 @@ const Main = () => {
 
   return (
     <>
-    {loading ? <p>loading</p> : 
-      <>
+    {loading
+    ?
+      <div className="loading">
+        <img src={logo} alt="logo" />
+      </div>
+    :
+      <BrowserRouter>
         <Header categories={categories} />
+
         <Switch> {/* The Switch decides which component to show based on the current URL.*/}
-          
           <Route exact path='/'>
             <Top productsData={products} />
           </Route>
-          {/* <Route exact path='/productDetails'>
-            <ProductDetails data={products} />
-          </Route> */}
+
           <Route exact path='/shop'>
             <Products categories={categories} productsData={products} />
           </Route>
+
           <Route exact path='/shop/:categoryId'>
             <Products categories={categories} productsData={products} />
           </Route>
+
           <Route exact path='/shop/:categoryId/:productUrl'>
             <Products categories={categories} productsData={products} cart={handleCart}/>
           </Route>
           <Route exact path='/cart'>
             <Cart products={cart}/>
           </Route>
-          <Route component={PageNotFound} />
+
+          {/* <Route exact path='/cart'>
+            <Cart products={cart}/>
+          </Route> */}
+
+          <Route exact path='/checkout'>
+            <Checkout categories={categories} productsData={products} />
+          </Route>
+
+          <Route>
+            <PageNotFound categories={categories} />
+          </Route>
         </Switch>
-        <Footer />
-      </>
+
+        <Footer categories={categories} />
+      </BrowserRouter>
     }
     </>
   );
