@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import CheckoutInformation from './CheckoutMain/CheckoutInformation';
-import CheckoutShipping from './CheckoutMain/CheckoutShipping';
-// import PageNotFound from '../PageNotFound/PageNotFound';
+import CheckoutPay from './CheckoutMain/CheckoutPay';
 
 import CheckoutSide from './CheckoutSide/CheckoutSide';
 
@@ -15,8 +14,7 @@ export default function Checkout(props) {
     return(
         <>
         <div className='d-flex justify-content-center'>
-            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} categories={props.categories} products={props.products} /> : <CheckoutShipping handleClick={handleClick} categories={props.categories} />}
-            {/* <CheckoutMain products={props.products}/> */}
+            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} categories={props.categories} products={props.products} /> : <CheckoutPay handleClick={handleClick} categories={props.categories} />}
             <CheckoutSide products={props.products} />
         </div>
 
@@ -25,9 +23,8 @@ export default function Checkout(props) {
                 <CheckoutInformation categories={props.categories} productsData={props.productsData} />
             </Route>
             <Route exact path='/checkoutshipping'>
-                <CheckoutShipping />
+                <CheckoutPay />
             </Route>
-            {/* <Route component={PageNotFound} /> */}
         </Switch>
         </>
     )
