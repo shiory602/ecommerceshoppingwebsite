@@ -4,34 +4,40 @@ import { Link } from "react-router-dom";
 
 export default function Header (props) {
     return (
-        <header>
-            <ul className="nav nav-tabs d-flex justify-content-between navbar-light bg-light fs-1 text-secondary">
-                <li className="nav-item"><Link to={'/shop'} className="nav-link text-reset">Shop All</Link></li>
-                <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle text-reset" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Shop Collections</Link>
-                    <ul class="dropdown-menu">
+        <div className="row text-center" id="navbarScroll">
+            <ul className="col-3 navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex flex-row justify-content-around">
+                <li class="nav-item pt-4">
+                    <Link to={'/shop'} className="nav-link active text-reset">
+                        <span className="mx-3 p-2">Shop All</span>
+                    </Link>
+                </li>
+                <li class="nav-item mt-4 dropdown">
+                    <Link class="nav-link dropdown-toggle text-reset" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Shop Collections
+                    </Link>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         {props.categories.map(category => {
                             const catId = category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-')
                             return <li key={catId}><Link to={`/shop/${catId}/`} className="text-reset fs-3 text-secondary" >{category}</Link></li>
                         })}
                     </ul>
                 </li>
-                <li className="nav-item">
-                    <Link to="/" className="nav-link navbar-brand text-reset">
-                        <img src={logo} width="100px" alt="logo" />
-                    </Link>
-                </li>
-                <li className="nav-item">
+            </ul>
+            <Link to="/" className="col nav-link navbar-brand">
+                <img src={logo} width="100px" alt="logo" />
+            </Link>
+            <ul className="col-3 navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex flex-row justify-content-around">
+                <li className="nav-item pt-4">
                     <Link to="/login" className="nav-link disabled text-reset">
-                        <span className="mx-3 p-2">Log In</span>
+                        Log In
                     </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item pt-4">
                     <Link to="/cart" className="nav-link text-reset">
-                        <span className="mx-3 p-2">Cart</span>
+                        Cart<span className="px-1">( 1 )</span>
                     </Link>
                 </li>
             </ul>
-        </header>
+        </div>
     )
 }
