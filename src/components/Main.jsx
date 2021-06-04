@@ -67,7 +67,7 @@ const Main = () => {
 
         <Switch> {/* The Switch decides which component to show based on the current URL.*/}
           <Route exact path='/'>
-            <Top productsData={products} />
+            <Top categories={categories} productsData={products} />
           </Route>
 
           <Route exact path='/shop'>
