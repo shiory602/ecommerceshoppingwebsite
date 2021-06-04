@@ -1,14 +1,21 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import CheckoutMain from './CheckoutMain/CheckoutMain';
+import React, { useState } from 'react';
+import CheckoutInformation from './CheckoutMain/CheckoutInformation';
+import CheckoutPay from './CheckoutMain/CheckoutPay';
+
 import CheckoutSide from './CheckoutSide/CheckoutSide';
-import './Checkout.css';
 
 export default function Checkout(props) {
+    const [check, setCheck] = useState('Information');
+    const handleClick = (v) => {
+        setCheck(v);
+    }
+
     return(
+        <>
         <div className='d-flex justify-content-center'>
-            <CheckoutMain products={props.products}/>
-            <CheckoutSide products={props.products} />
+            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} categories={props.categories} products={props.products} /> : <CheckoutPay handleClick={handleClick} categories={props.categories} />}
+            {check === 'Information' ? <CheckoutSide products={props.products} /> : ''}
         </div>
+        </>
     )
 }
