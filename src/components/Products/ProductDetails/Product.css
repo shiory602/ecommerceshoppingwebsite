@@ -29,4 +29,8 @@
           transform: scale(1.1);
   cursor: pointer;
 }
+
+.container {
+  padding: 5%;
+}
 /*# sourceMappingURL=Product.css.map */

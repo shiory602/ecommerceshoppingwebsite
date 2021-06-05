@@ -7,7 +7,6 @@ import Footer from './Footer';
 
 import Top from './Top/Top';
 import Products from './Products/Products';
-// import Cart from './Cart/Cart';
 import Checkout from './Checkout/Checkout';
 import PageNotFound from './PageNotFound/PageNotFound';
 import Cart from './Cart/Cart'
@@ -19,14 +18,18 @@ const Main = () => {
   const [cart, setCart] = useState([]);
   const handleCart = (data) => {
     let newCart = cart;
-    const check = (element) => (element === data);
+    const check = (element) => (element.id === data.id);
     if (!cart.some(check)) {
       newCart.push(data);
       setCart(newCart);
       console.log(cart)
     }
   }
-  
+  const handleDelete = (id) => {
+    let currCart = cart;
+    let newCart = currCart.filter(product => product.id !== id);
+    setCart(newCart);
+  }
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
@@ -63,7 +66,7 @@ const Main = () => {
       </div>
     :
       <BrowserRouter>
-        <Header categories={categories} />
+        <Header categories={categories} cart={cart}/>
 
         <Switch> {/* The Switch decides which component to show based on the current URL.*/}
           <Route exact path='/'>
@@ -82,12 +85,10 @@ const Main = () => {
             <Products categories={categories} productsData={products} cart={handleCart}/>
           </Route>
           <Route exact path='/cart'>
-            <Cart products={cart}/>
+            <Cart products={cart} deleteProduct={handleDelete}/>
           </Route>
 
-          <Route exact path='/checkout'>
-            <Checkout products={cart} />
-          </Route>
+          <Route exact path='/checkout' component={Checkout}/>
 
           <Route>
             <PageNotFound categories={categories} />

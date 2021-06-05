@@ -7,8 +7,8 @@ import './Checkout.css';
 export default function Checkout(props) {
     return(
         <div className='d-flex justify-content-center'>
-            <CheckoutMain products={props.products}/>
-            <CheckoutSide products={props.products} />
+            <CheckoutMain products={props.location.products}/>
+            <CheckoutSide products={props.location.products} />
         </div>
     )
 }

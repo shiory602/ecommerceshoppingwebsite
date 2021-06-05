@@ -9,7 +9,7 @@ export default function CheckoutSide(props) {
         props.products.map(product => 
             newTotal[product.id] = product.quantity*product.price
         )
-        setSubTotal(newTotal.reduce((a, b) => a + b,0));
+        setSubTotal(parseFloat(newTotal.reduce((a, b) => a + b,0).toFixed(2)));
     },[])
     return(
         <div className='d-flex flex-column m-5'>
@@ -23,7 +23,7 @@ export default function CheckoutSide(props) {
                     <div class="col-6">
                             <h5 class="title">{product.title}</h5><p class="text"><small class="text-muted">{product.color.charAt(0).toUpperCase() + product.color.slice(1)} / {product.size}</small></p>
                     </div>
-                    <p class="text col-3">${product.price}</p>
+                    <p class="text col-3">${ product.quantity*product.price}</p>
                 </>
                 )}
                 <hr />

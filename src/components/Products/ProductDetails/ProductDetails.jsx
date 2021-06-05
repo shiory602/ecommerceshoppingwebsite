@@ -39,7 +39,6 @@ export default function Product(props) {
     }
     return(
         <>
-        {console.log(state)}
         <div className='Product container' key={state.id}>
             <div className='row'>
                 <div className='col productImg'>
@@ -68,7 +67,6 @@ export default function Product(props) {
                         <p className='sizeNum' onClick={(e)=> selectSize(e,11)}>11</p>
                     </div>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add to Cart</button>
-                    <button>Buy now</button>
                 </div>
             </div>
             <div className='row'>
