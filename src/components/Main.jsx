@@ -16,13 +16,13 @@ const Main = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
+  const [numItems,setNumItems] = useState();
   const handleCart = (data) => {
     let newCart = cart;
     const check = (element) => (element.id === data.id);
     if (!cart.some(check)) {
       newCart.push(data);
       setCart(newCart);
-      console.log(cart)
     }
   }
   const handleDelete = (id) => {
@@ -30,12 +30,14 @@ const Main = () => {
     let newCart = currCart.filter(product => product.id !== id);
     setCart(newCart);
   }
+  const handleNumItems = (num) => {
+    setNumItems(num);
+  }
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
 
         let dataProducts = data.filter(product => product.category != 'electronics');
         const catProducts = new Set();
@@ -66,11 +68,11 @@ const Main = () => {
       </div>
     :
       <BrowserRouter>
-        <Header categories={categories} cart={cart}/>
+        <Header categories={categories} cart={cart} numItems={numItems}/>
 
         <Switch> {/* The Switch decides which component to show based on the current URL.*/}
           <Route exact path='/'>
-            <Top productsData={products} />
+            <Top categories={categories} productsData={products} />
           </Route>
 
           <Route exact path='/shop'>
@@ -85,7 +87,7 @@ const Main = () => {
             <Products categories={categories} productsData={products} cart={handleCart}/>
           </Route>
           <Route exact path='/cart'>
-            <Cart products={cart} deleteProduct={handleDelete}/>
+            <Cart products={cart} deleteProduct={handleDelete} handleNumItems={handleNumItems}/>
           </Route>
 
           <Route exact path='/checkout' component={Checkout}/>

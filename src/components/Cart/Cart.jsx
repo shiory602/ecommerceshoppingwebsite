@@ -10,8 +10,10 @@ export default function Cart(props) {
     const [data,setData] = useState(props.products);
     const [numItems,setNumItems] = useState();
     useEffect(()=>{
+        props.handleNumItems(numItems);
+    },[numItems])
+    useEffect(()=>{
         $('.modal-backdrop').remove();
-        console.log(data)
         let newTotal =[];
         data.map(product => 
             newTotal[product.id] = product.quantity*product.price
@@ -24,7 +26,6 @@ export default function Cart(props) {
         }
         setNumItems(newNum);
     },[data])
-
     const deleteProduct = id => {
         props.deleteProduct(id);
         let currProducts = data;
@@ -57,7 +58,6 @@ export default function Cart(props) {
             newNum = newNum + parseInt(product.quantity);
         }
         setNumItems(newNum);
-        console.log(data)
     }
     return (
         <div className="cart">
@@ -71,7 +71,7 @@ export default function Cart(props) {
                         <p>Size: {product.size}</p>
                     </div>
                     <div className='counter'>
-                        <button onClick={()=>counter('-',product.id)}>-</button><input id={'quantity'+product.id} defaultValue={product.quantity}></input><button onClick={()=>counter('+',product.id)}>+</button>
+                        <button onClick={()=>counter('-',product.id)}>-</button><input id={'quantity'+product.id} defaultValue={product.quantity} disabled></input><button onClick={()=>counter('+',product.id)}>+</button>
                     </div>
                     <p className='price'>${total[product.id]}</p>
                     <img className='delete' src={deleteIcon} onClick={()=>deleteProduct(product.id)} />
