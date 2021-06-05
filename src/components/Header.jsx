@@ -38,7 +38,7 @@ export default function Header (props) {
                 </li>
                 <li className="nav-item pt-4">
                     <Link to="/cart" className="nav-link text-reset">
-                        Cart<span className="px-1">( {props.numItems} )</span>
+                        Cart<span className="px-1">( {!props.numItems ? 0 : props.numItems} )</span>
                     </Link>
                 </li>
             </ul>
