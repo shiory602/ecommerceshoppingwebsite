@@ -1,39 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import $ from 'jquery';
-import './Cart.css'
+import './Cart.css';
+import deleteIcon from '../../images/x-circle.svg'
 
 export default function Cart(props) {
     const [total,setTotal] = useState([]);
     const [total2,setTotal2] = useState([]);
+    const [data,setData] = useState(props.products);
+    const [numItems,setNumItems] = useState();
     useEffect(()=>{
+        props.handleNumItems(numItems);
+    },[numItems])
+    useEffect(()=>{
+        $('.modal-backdrop').remove();
         let newTotal =[];
-        props.products.map(product => 
-            newTotal[product.id] = parseInt(document.getElementById('quantity'+product.id).value)*product.price
+        data.map(product => 
+            newTotal[product.id] = product.quantity*product.price
         )
         setTotal(newTotal);
-        setTotal2(newTotal.reduce((a, b) => a + b,0));
-    },[])
-    $('.modal-backdrop').remove();
+        setTotal2(newTotal.reduce((a, b) => a + b,0).toFixed(2));
+        let newNum = 0;
+        for(let product of data) {
+            newNum = newNum + parseInt(product.quantity);
+        }
+        setNumItems(newNum);
+    },[data])
+    const deleteProduct = id => {
+        props.deleteProduct(id);
+        let currProducts = data;
+        let newProducts = currProducts.filter(product => product.id !== id);
+        setData(newProducts);
+    }
     const counter = (y,id) => {
-        let newArr = props.products.find(x => x.id == id)
+        let prod = data.find(x => x.id == id)
         if (y == '+') {
-            document.getElementById('quantity'+id).value ++
+            prod.quantity ++
         }else{
-            if (document.getElementById('quantity'+id).value > 1) {
-               document.getElementById('quantity'+id).value -- 
+            if (prod.quantity > 1) {
+                prod.quantity -- 
             }
         }
+        document.getElementById('quantity'+ id).value = prod.quantity;
         let newTotal = total;
-        newTotal[id] = parseInt(document.getElementById('quantity'+id).value)*newArr.price
+        newTotal[id] = (prod.quantity*prod.price)
         setTotal(newTotal);
-        setTotal2(newTotal.reduce((a, b) => a + b, 0));
+        setTotal2(newTotal.reduce((a, b) => a + b, 0).toFixed(2));
+        let newCart = data;
+        for (let product of newCart) {
+            if (product.id == id) {
+                product.quantity = prod.quantity;
+            }
+        }
+        setData(newCart);
+        let newNum = 0;
+        for(let product of data) {
+            newNum = newNum + parseInt(product.quantity);
+        }
+        setNumItems(newNum);
     }
     return (
         <div className="cart">
-            {props.products.map(product => 
-                <div className='product' id={product.id}>
-                    <img src={product.image} alt="photo" />
+            {data.map(product => 
+                <div key={product.id} className='product' id={product.id}>
+                    <img className='productImg' src={product.image} alt="photo" />
                     <div className='details'>
                         <h5>{product.title}</h5>
                         <p>Price: ${product.price}</p>
@@ -41,15 +71,25 @@ export default function Cart(props) {
                         <p>Size: {product.size}</p>
                     </div>
                     <div className='counter'>
-                        <button onClick={()=>counter('-',product.id)}>-</button><input id={'quantity'+product.id} defaultValue={product.quantity}></input><button onClick={()=>counter('+',product.id)}>+</button>
+                        <button onClick={()=>counter('-',product.id)}>-</button><input id={'quantity'+product.id} defaultValue={product.quantity} disabled></input><button onClick={()=>counter('+',product.id)}>+</button>
                     </div>
                     <p className='price'>${total[product.id]}</p>
+                    <img className='delete' src={deleteIcon} onClick={()=>deleteProduct(product.id)} />
                 </div>
                 )}
-            <h3>Subtotal: {total2}</h3>
-            <Link to="/checkout">
-                <button>Check Out</button>
-            </Link>
+            <div className='summary'>
+                <div>
+                    <h1>Order Summary</h1>
+                    <p>{numItems} Items: ${total2}</p>
+                    <h3>Subtotal: {total2}</h3>
+                </div>
+                <Link to={{
+                    pathname:"/checkout",
+                    products: data
+                 }}><button type="button" className="btn btn-secondary">Check Out</button>
+                </Link>
+            </div>
+            
         </div>
         
     )

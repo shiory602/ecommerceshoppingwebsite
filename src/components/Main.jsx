@@ -7,7 +7,6 @@ import Footer from './Footer';
 
 import Top from './Top/Top';
 import Products from './Products/Products';
-// import Cart from './Cart/Cart';
 import Checkout from './Checkout/Checkout';
 import PageNotFound from './PageNotFound/PageNotFound';
 import Cart from './Cart/Cart'
@@ -17,22 +16,28 @@ const Main = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
+  const [numItems,setNumItems] = useState();
   const handleCart = (data) => {
     let newCart = cart;
-    const check = (element) => (element === data);
+    const check = (element) => (element.id === data.id);
     if (!cart.some(check)) {
       newCart.push(data);
       setCart(newCart);
-      console.log(cart)
     }
   }
-  
+  const handleDelete = (id) => {
+    let currCart = cart;
+    let newCart = currCart.filter(product => product.id !== id);
+    setCart(newCart);
+  }
+  const handleNumItems = (num) => {
+    setNumItems(num);
+  }
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
 
         let dataProducts = data.filter(product => product.category != 'electronics');
         const catProducts = new Set();
@@ -63,7 +68,7 @@ const Main = () => {
       </div>
     :
       <BrowserRouter>
-        <Header categories={categories} />
+        <Header categories={categories} cart={cart} numItems={numItems}/>
 
         <Switch> {/* The Switch decides which component to show based on the current URL.*/}
           <Route exact path='/'>
@@ -82,12 +87,10 @@ const Main = () => {
             <Products categories={categories} productsData={products} cart={handleCart}/>
           </Route>
           <Route exact path='/cart'>
-            <Cart products={cart}/>
+            <Cart products={cart} deleteProduct={handleDelete} handleNumItems={handleNumItems}/>
           </Route>
 
-          <Route exact path='/checkout'>
-            <Checkout products={cart} />
-          </Route>
+          <Route exact path='/checkout' component={Checkout}/>
 
           <Route>
             <PageNotFound categories={categories} />

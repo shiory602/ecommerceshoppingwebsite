@@ -13,8 +13,8 @@ export default function Checkout(props) {
     return(
         <>
         <div className='d-flex justify-content-center'>
-            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} categories={props.categories} products={props.products} /> : <CheckoutPay handleClick={handleClick} categories={props.categories} />}
-            {check === 'Information' ? <CheckoutSide products={props.products} /> : ''}
+            {check === 'Information' ? <CheckoutInformation handleClick={handleClick} /> : <CheckoutPay handleClick={handleClick}/>}
+            {check === 'Information' ? <CheckoutSide products={props.location.products} /> : ''}
         </div>
         </>
     )

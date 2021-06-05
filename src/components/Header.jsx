@@ -1,8 +1,12 @@
-import React from "react";
+import React , { useState, useEffect } from "react";
 import logo from "../logo/logo.png";
 import { Link } from "react-router-dom";
 
 export default function Header (props) {
+    const [numItems,setNumItems] = useState(props.numItems);
+    useEffect(()=>{
+        setNumItems(props.numItems)
+    },[])
     return (
         <div className="row text-center" id="navbarScroll">
             <ul className="col-3 navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex flex-row justify-content-around">
@@ -34,7 +38,7 @@ export default function Header (props) {
                 </li>
                 <li className="nav-item pt-4">
                     <Link to="/cart" className="nav-link text-reset">
-                        Cart<span className="px-1">( 1 )</span>
+                        Cart<span className="px-1">( {props.numItems} )</span>
                     </Link>
                 </li>
             </ul>
