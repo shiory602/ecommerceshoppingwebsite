@@ -55,9 +55,9 @@ export default function Product(props) {
                     <p>${state.price}</p>
                     <div className='color'>
                         <h5>Color</h5>
-                        <button className='colorSel' onClick={(e)=> selectColor(e,'black')} style={{'background-color':'rgb(24, 21, 21)'}}></button>
-                        <button className='colorSel' onClick={(e)=> selectColor(e,'blue')} style={{'background-color':'rgb(76, 55, 196)'}}></button>
-                        <button className='colorSel' onClick={(e)=> selectColor(e,'white')} style={{'background-color':'rgb(235, 217, 217)'}}></button>  
+                        <button className='colorSel' onClick={(e)=> selectColor(e,'black')} style={{'backgroundColor':'rgb(24, 21, 21)'}}></button>
+                        <button className='colorSel' onClick={(e)=> selectColor(e,'blue')} style={{'backgroundColor':'rgb(76, 55, 196)'}}></button>
+                        <button className='colorSel' onClick={(e)=> selectColor(e,'white')} style={{'backgroundColor':'rgb(235, 217, 217)'}}></button>  
                     </div>
                     <div className='size'>
                         <h5>Size</h5>
@@ -66,7 +66,7 @@ export default function Product(props) {
                         <p className='sizeNum' onClick={(e)=> selectSize(e,10)}>10</p>
                         <p className='sizeNum' onClick={(e)=> selectSize(e,11)}>11</p>
                     </div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add to Cart</button>
+                    <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add to Cart</button>
                 </div>
             </div>
             <div className='row'>

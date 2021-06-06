@@ -5,7 +5,7 @@ import App from './App';
 
 ReactDOM.render((
     <>
-      <App /> {/* The various pages will be displayed by the `Main` component. */}
+      <App />
     </>
   ),
   document.getElementById('root')
