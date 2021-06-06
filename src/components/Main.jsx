@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import logo from "../logo/logo.png";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import ScrollToTop from './ScrollToTop/ScrollToTop';
+
 import Header from './Header';
 import Footer from './Footer';
 
 import Top from './Top/Top';
 import Products from './Products/Products';
+import Cart from './Cart/Cart';
 import Checkout from './Checkout/Checkout';
 import PageNotFound from './PageNotFound/PageNotFound';
-import Cart from './Cart/Cart';
 
 const Main = () => {
   const [categories, setCategories] = useState([]);
@@ -54,7 +56,7 @@ const Main = () => {
           // Product URL
           product.url = url;
 
-          catProducts.add(product.category);
+          return catProducts.add(product.category);
         });
 
         setCategories([...catProducts].sort());
@@ -72,9 +74,11 @@ const Main = () => {
       </div>
     :
       <BrowserRouter>
-        <Header categories={categories} cart={cart} numItems={numItems}/>
+        <ScrollToTop />
 
-        <Switch> {/* The Switch decides which component to show based on the current URL.*/}
+        <Header categories={categories} cart={cart} numItems={numItems} />
+
+        <Switch> {/* The Switch decides which component to show based on the current URL. */}
           <Route exact path='/'>
             <Top categories={categories} productsData={products} />
           </Route>

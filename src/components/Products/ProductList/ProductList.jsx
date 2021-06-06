@@ -17,13 +17,21 @@ const ProductList = (props) => {
 
                     <div className="col">
                         <div className="row gy-4">
-                            <h1>{props.categoryId != undefined ? props.prodData[0].category : 'All products'}</h1>
-                            {props.prodData.map(product =>
-                                <ProductCard
-                                    key={product.id}
-                                    categoryId={props.categoryId}
-                                    productsData={product}
-                                />
+                            <h1>{props.categoryId !== undefined ? props.prodData[0].category : 'All products'}</h1>
+
+                            {props.prodData.map(product => {
+                                let catId = props.categoryId
+
+                                if (catId === undefined)
+                                    catId = product.category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-')
+
+                                return (
+                                    <ProductCard
+                                        key={product.id}
+                                        categoryId={catId}
+                                        productsData={product}
+                                    />
+                                )}
                             )}
                         </div>
                     </div>

@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import ProductDetails from './ProductDetails/ProductDetails'
 import ProductList from './ProductList/ProductList'
 
+import PageNotFound from '../PageNotFound/PageNotFound';
+
 const Products = (props) => {
     const [page, setPage] = useState('')
     const [productsData, setProductsData] = useState(props.productsData)
@@ -15,29 +17,52 @@ const Products = (props) => {
     }
 
     useEffect(() => {
+        let showPage = ''
         let prodData = []
 
-        if (productUrl != undefined) {
+        if (productUrl !== undefined) {
             prodData = props.productsData.filter(product => product.url === productUrl)
 
-            setPage('ProductDetails')
+            showPage = 'ProductDetails'
         }
         else {
-            if (categoryId != undefined)
+            if (categoryId !== undefined) {
                 prodData = props.productsData.filter(product => product.category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-') === categoryId)
 
-            setPage('')
+                showPage = 'ProductList'
+            }
         }
 
-        if (prodData.length > 0) setProductsData(prodData)
-    }, [categoryId, productUrl])
+        if (prodData.length === 0) {
+            if (showPage === '')
+                prodData = props.productsData
+            else
+                showPage = 'PageNotFound'
+        }
+
+        setProductsData(prodData)
+        setPage(showPage)
+    }, [props, page, categoryId, productUrl])
 
     return (
-        (page === 'ProductDetails')
+        (page === 'PageNotFound')
         ?
-            <ProductDetails prodData={productsData} cartChange={handleCartChange}/>
+            <PageNotFound
+                categories={props.categories}
+            />            
         :
-            <ProductList categories={props.categories} categoryId={categoryId} prodData={productsData} />
+            (page === 'ProductDetails')
+            ?
+                <ProductDetails
+                    prodData={productsData}
+                    cartChange={handleCartChange}
+                />
+            :
+                <ProductList
+                    categories={props.categories}
+                    categoryId={categoryId}
+                    prodData={productsData}
+                />
     )
 }
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { FaLongArrowAltRight } from "react-icons/fa";
+
 import "./Top.css";
 
 export default function Top(props) {
@@ -17,7 +19,7 @@ export default function Top(props) {
         }
 
         setFuture(array);
-    }, []);
+    }, [props]);
 
     return (
         <>
@@ -43,7 +45,7 @@ export default function Top(props) {
                                         <img src={require(`../../images/img-category-${catId}-medium.jpg`).default} className="d-block w-100" alt={category} />
                                         <div className="carousel-caption d-none d-md-block">
                                             <Link to={`/shop/${catId}`} className="btn btn-light btn-lg fw-bold float-end">
-                                                shop {category} &gt;
+                                                Shop {category} <FaLongArrowAltRight />
                                             </Link>
                                         </div>
                                     </div>
@@ -58,23 +60,23 @@ export default function Top(props) {
             <section className="categories-section home-section">
                 <div className="container">
                     <div className="row">
-                        <h1 className="mb-4 text-center">shop by category</h1>
+                        <h1 className="mb-4 text-center">Shop by Category</h1>
                         <div className="col text-center">
                             <Link to="shop/womens-clothing">
-                                <div className="categories-img" style={{backgroundImage: `url(${props.productsData[12].image})`}}></div>
-                                <p className="text h3">women's clothing</p>
+                                <div className="categories-img mb-4" style={{backgroundImage: `url(${props.productsData[12].image})`}}></div>
+                                <p className="text h3">Women's Clothing</p>
                             </Link>
                         </div>
                         <div className="col text-center">
                             <Link to="shop/mens-clothing">
-                                <div className="categories-img" style={{backgroundImage: `url(${props.productsData[2].image})`}}></div>
-                                <p className="text h3">men's clothing</p>
+                                <div className="categories-img mb-4" style={{backgroundImage: `url(${props.productsData[2].image})`}}></div>
+                                <p className="text h3">Men's Clothing</p>
                             </Link>
                         </div>
                         <div className="col text-center">
                             <Link to="shop/jewelery">
-                                <div className="categories-img" style={{backgroundImage: `url(${props.productsData[6].image})`}}></div>
-                                <p className="text h3">jewelery</p>
+                                <div className="categories-img mb-4" style={{backgroundImage: `url(${props.productsData[6].image})`}}></div>
+                                <p className="text h3">Jewelery</p>
                             </Link>
                         </div>
                     </div>
@@ -83,7 +85,7 @@ export default function Top(props) {
 
             <section className="features-section home-section">
                 <div className="container text-center">
-                    <h1 className="mb-4 text-center">featured products</h1>
+                    <h1 className="mb-4 text-center">Featured Products</h1>
 
                     <div className="gallery-container mb-4">
                         {future.map(product => {
@@ -107,7 +109,7 @@ export default function Top(props) {
                         })}
                     </div>
 
-                    <Link to={`/shop`} className="btn btn-primary btn-lg fw-bold">shop all &gt;</Link>
+                    <Link to={`/shop`} className="btn btn-primary btn-lg fw-bold">Shop All <FaLongArrowAltRight /></Link>
                 </div>
             </section>
         </>
