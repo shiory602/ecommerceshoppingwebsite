@@ -1,15 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './BagModal.css';
 
 export default function BagModal(props) {
     const [quantity, setQuantity] = useState(1);
     const counter = (y) => {
-        if (y == '+') {
+        if (y === '+') {
             document.getElementById('quantity').value ++
         }else{
             if (document.getElementById('quantity').value > 1) {
-               document.getElementById('quantity').value -- 
+                document.getElementById('quantity').value -- 
             }
         }
         setQuantity(document.getElementById('quantity').value)
@@ -22,7 +22,7 @@ export default function BagModal(props) {
         <div className="modal-dialog">
             <div className="modal-content">
             <div className="modal-header">
-                <h5 className="modal-title" id="staticBackdropLabel"></h5>
+                <h5 className="modal-title" id="staticBackdropLabel"> </h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body content">
@@ -41,7 +41,7 @@ export default function BagModal(props) {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body content">
-                    <img src={props.data.image} alt="photo" width='15%' />
+                    <img src={props.data.image} alt={props.data.title} width='15%' />
                     <h5>{props.data.title}</h5>
                     <p>Price: ${props.data.price}</p>
                     <div>

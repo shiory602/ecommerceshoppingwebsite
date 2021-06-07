@@ -117,7 +117,7 @@
 
 .summary {
   position: absolute;
-  top: 30vh;
+  /* top: 30vh; */
   width: 40%;
   -ms-flex-item-align: end;
       align-self: flex-end;

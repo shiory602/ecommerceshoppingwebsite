@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import img from '../../../logo/instagram_profile_image.png';
 
 export default function CheckoutSide(props) {
     const [subTotal,setSubTotal] = useState([]);
-    const [shipping,setShipping] = useState(10);
+    let shipping = 10;
     useEffect(()=>{
         let newTotal =[];
         props.products.map(product => 
             newTotal[product.id] = product.quantity*product.price
         )
         setSubTotal(parseFloat(newTotal.reduce((a, b) => a + b,0).toFixed(2)));
-    },[])
+    },[props])
     return(
         <div className='d-flex flex-column m-5'>
             <div className="mt-2 mb-5 row">

@@ -8,20 +8,6 @@ export default function CheckoutInformation(props) {
             <div className='d-flex flex-column m-5'>
                 <h2>CGS</h2>
 
-                {/* <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item text-secondary">
-                            <Link to={"/cart"} className="text-reset" role="button" aria-expanded="false">Cart</Link>
-                        </li>
-                        <li className="breadcrumb-item text-secondary" aria-current="page">
-                            <Link className="text-reset" role="button" aria-expanded="false">Information</Link>
-                        </li>
-                        <li className="breadcrumb-item text-secondary disabled">
-                            <Link className="text-reset" role="button" aria-expanded="false">Payment</Link>
-                        </li>
-                    </ol>
-                </nav> */}
-
                 <div className="text-center">
                     <div className="row mb-1">
                         <div className="col"></div>
@@ -51,7 +37,7 @@ export default function CheckoutInformation(props) {
                     <div className="col-12">
                         <label htmlFor="inputEmail4" className="form-label row">
                             <h5 className='col-md-6'>Contact information</h5>
-                            <p className='col-md-6'>Already have an account?<a href="#" className="m-3">Log in</a></p>
+                            <p className='col-md-6'>Already have an account?<Link to='/checkout' className="m-3 disabled">Log in</Link></p>
                         </label>
                         <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
                     </div>

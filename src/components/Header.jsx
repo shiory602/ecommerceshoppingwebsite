@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from "react"
+import React from "react"
 import logo from "../logo/logo.png"
 import { Link } from "react-router-dom"
 
@@ -6,11 +6,6 @@ import { IconContext } from "react-icons"
 import { FaShoppingCart } from "react-icons/fa"
 
 export default function Header (props) {
-    // const [numItems, setNumItems] = useState(props.numItems)
-
-    // useEffect(() => {
-    //     setNumItems(props.numItems)
-    // }, [])
 
     return (
         <header>
@@ -23,9 +18,9 @@ export default function Header (props) {
                             </Link>
                         </li>
                         <li className="nav-item dropdown ms-4">
-                            <a className="nav-link dropdown-toggle text-reset" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Link to={'/'} className="nav-link dropdown-toggle text-reset" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Shop Collections
-                            </a>
+                            </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 {props.categories.map(category => {
                                     const catId = category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-')
