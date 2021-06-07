@@ -37,7 +37,7 @@ export default function CheckoutInformation(props) {
                     <div className="col-12">
                         <label htmlFor="inputEmail4" className="form-label row">
                             <h5 className='col-md-6'>Contact information</h5>
-                            <p className='col-md-6'>Already have an account?<Link className="m-3 disabled">Log in</Link></p>
+                            <p className='col-md-6'>Already have an account?<Link to='/checkout' className="m-3 disabled">Log in</Link></p>
                         </label>
                         <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
                     </div>
