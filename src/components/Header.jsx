@@ -1,43 +1,67 @@
-import React from "react";
-import logo from "../logo/logo.png";
-import { Link } from "react-router-dom";
+import React , { useState, useEffect } from "react"
+import logo from "../logo/logo.png"
+import { Link } from "react-router-dom"
 
+import { IconContext } from "react-icons"
+import { FaShoppingCart } from "react-icons/fa"
 
-export default function Header () {
+export default function Header (props) {
+    // const [numItems, setNumItems] = useState(props.numItems)
+
+    // useEffect(() => {
+    //     setNumItems(props.numItems)
+    // }, [])
+
     return (
-        <>
-        <ul className="nav d-flex justify-content-between">
-            <li className="nav-item row align-items-center">
-                <a className="nav-link active col" aria-current="page" href="#">
-                    <span className="mx-3">Dress</span>
-                </a>
-                <a className="nav-link active col" aria-current="page" href="#">
-                    <span className="mx-3">Shoes</span>
-                </a>
-                <a className="nav-link active col" aria-current="page" href="#">
-                <span className="mx-3">Accessories</span>
-                </a>
-            </li>
-            <li className="nav-item row">
-                <Link to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/product">Product</Link>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">
-                    <img src={logo} width="100px" alt="logo" />
-                </a>
-            </li>
-            <li className="nav-item row align-items-center">
-            <a className="nav-link active col" aria-current="page" href="#">
-                    <span className="mx-3 p-2">LogIn</span>
-                </a>
-                <a className="nav-link active col" aria-current="page" href="#">
-                <span className="mx-3 p-2">Cart</span>
-                </a>
-            </li>
-        </ul>
-        </>
+        <header>
+            <div className="container-fluid">
+                <div className="row text-center">
+                    <ul className="col-3 navbar-nav d-flex flex-row align-items-center ms-2 ps-4 pe-0">
+                        <li className="nav-item">
+                            <Link to={'/shop'} className="nav-link active text-reset">
+                                <span>Shop All</span>
+                            </Link>
+                        </li>
+                        <li className="nav-item dropdown ms-4">
+                            <a className="nav-link dropdown-toggle text-reset" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Shop Collections
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                {props.categories.map(category => {
+                                    const catId = category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-')
+
+                                    return (
+                                        <li key={catId}>
+                                            <Link to={`/shop/${catId}/`} className="text-reset text-secondary" >
+                                                {category}
+                                            </Link>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <Link to="/" className="col nav-link navbar-brand me-0">
+                        <img src={logo} width="100px" alt="logo" />
+                    </Link>
+
+                    <ul className="col-3 navbar-nav d-flex flex-row justify-content-end align-items-center me-2 pe-4">
+                        <li className="nav-item">
+                            <Link to="/" className="nav-link disabled text-reset">
+                                Log In
+                            </Link>
+                        </li>
+                        <li className="nav-item ms-4">
+                            <Link to="/cart" className="nav-link text-reset">
+                                <IconContext.Provider value={{ style: {fontSize: '18px'}}}>
+                                    <FaShoppingCart /> {!props.numItems ? '' : <span className="top-0 translate-middle badge bg-secondary rounded-pill">{props.numItems}</span>}
+                                </IconContext.Provider>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+       </header>
     )
 }
