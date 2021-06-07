@@ -11,7 +11,7 @@ export default function Cart(props) {
     const [numItems,setNumItems] = useState();
     useEffect(()=>{
         props.handleNumItems(numItems);
-    },[numItems])
+    },[numItems, props])
     useEffect(()=>{
         $('.modal-backdrop').remove();
         let newTotal =[];
@@ -33,8 +33,8 @@ export default function Cart(props) {
         setData(newProducts);
     }
     const counter = (y,id) => {
-        let prod = data.find(x => x.id == id)
-        if (y == '+') {
+        let prod = data.find(x => x.id === id)
+        if (y === '+') {
             prod.quantity ++
         }else{
             if (prod.quantity > 1) {
@@ -48,7 +48,7 @@ export default function Cart(props) {
         setTotal2(newTotal.reduce((a, b) => a + b, 0).toFixed(2));
         let newCart = data;
         for (let product of newCart) {
-            if (product.id == id) {
+            if (product.id === id) {
                 product.quantity = prod.quantity;
             }
         }
@@ -63,7 +63,7 @@ export default function Cart(props) {
         <div className="cart">
             {data.map(product => 
                 <div key={product.id} className='product' id={product.id}>
-                    <img className='productImg' src={product.image} alt="photo" />
+                    <img className='productImg' src={product.image} alt="{product.title}" />
                     <div className='details'>
                         <h5>{product.title}</h5>
                         <p>Price: ${product.price}</p>
@@ -74,7 +74,7 @@ export default function Cart(props) {
                         <button onClick={()=>counter('-',product.id)}>-</button><input id={'quantity'+product.id} defaultValue={product.quantity} disabled></input><button onClick={()=>counter('+',product.id)}>+</button>
                     </div>
                     <p className='price'>${total[product.id]}</p>
-                    <img className='delete' src={deleteIcon} onClick={()=>deleteProduct(product.id)} />
+                    <img className='delete' src={deleteIcon} onClick={()=>deleteProduct(product.id)} alt='delete' />
                 </div>
                 )}
             <div className='summary'>
@@ -86,7 +86,7 @@ export default function Cart(props) {
                 <Link to={{
                     pathname:"/checkout",
                     products: data
-                 }}><button type="button" className="btn btn-secondary">Check Out</button>
+                }}><button type="button" className="btn btn-secondary">Check Out</button>
                 </Link>
             </div>
             

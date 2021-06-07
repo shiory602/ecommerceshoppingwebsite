@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Product.css';
 import BagModal from '../BagModal/BagModal'
 
@@ -42,12 +42,12 @@ export default function Product(props) {
         <div className='Product container' key={state.id}>
             <div className='row'>
                 <div className='col productImg'>
-                    <img src={state.image} alt="photo" width='300px' />
+                    <img src={state.image} alt={state.title} width='300px' />
                     <div className='smallImgs'>
-                        <img src={state.image} alt="photo" width='70px' />
-                        <img src={state.image} alt="photo" width='70px' />
-                        <img src={state.image} alt="photo" width='70px' />
-                        <img src={state.image} alt="photo" width='70px' />
+                        <img src={state.image} alt={state.title} width='70px' />
+                        <img src={state.image} alt={state.title} width='70px' />
+                        <img src={state.image} alt={state.title} width='70px' />
+                        <img src={state.image} alt={state.title} width='70px' />
                     </div>
                 </div>
                 <div className='col'>
