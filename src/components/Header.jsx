@@ -1,9 +1,9 @@
-import React from "react";
-import logo from "../logo/logo.png";
-import { Link } from "react-router-dom";
+import React from "react"
+import logo from "../logo/logo.png"
+import { Link } from "react-router-dom"
 
-import { IconContext } from "react-icons";
-import { FaShoppingCart } from "react-icons/fa";
+import { IconContext } from "react-icons"
+import { FaShoppingCart } from "react-icons/fa"
 
 export default function Header (props) {
 
@@ -24,6 +24,7 @@ export default function Header (props) {
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 {props.categories.map(category => {
                                     const catId = category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-')
+
                                     return (
                                         <li key={catId}>
                                             <Link to={`/shop/${catId}/`} className="text-reset text-secondary" >
@@ -56,6 +57,6 @@ export default function Header (props) {
                     </ul>
                 </div>
             </div>
-        </header>
+       </header>
     )
 }

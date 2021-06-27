@@ -10,6 +10,7 @@ export default function Footer (props) {
                         <h5>Shop</h5>
                         {props.categories.map(category => {
                             const catId = category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-');
+
                             return (
                                 <Link
                                     className="nav-link link-secondary link-category p-0"

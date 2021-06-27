@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import { FaLongArrowAltRight } from "react-icons/fa";
+
 import "./Top.css";
 
 export default function Top(props) {
-    // array for future products gallery
     const [future, setFuture] = useState([]);
 
     useEffect(() => {
         let array = [];
 
         for(let i = 0; i < 8; i++) {
+            // array.push(props.productsData[i]);
             const randomIdx = Math.floor(Math.random() * array.length);
+
             array.splice(randomIdx, 0, props.productsData[i]);
         }
 
@@ -23,12 +26,12 @@ export default function Top(props) {
             <section className="banner-section home-section">
                 <div className="container-fluid px-0">
                     {/* -------------- Carousel: START -------------- */}
-                    <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
-                        <ol className="carousel-indicators">
-                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"></li>
-                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-                        </ol>
+                    <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div className="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
 
                         <div className="carousel-inner">
                             {props.categories.map((category, index) => {
@@ -53,7 +56,7 @@ export default function Top(props) {
                     {/* -------------- Carousel: END -------------- */}
                 </div>
             </section>
-            {/* ---------------------------------- Category Section: START ---------------------------------- */}
+
             <section className="categories-section home-section">
                 <div className="container">
                     <div className="row">
@@ -79,11 +82,11 @@ export default function Top(props) {
                     </div>
                 </div>
             </section>
-            {/* ---------------------------------- Category Section: END ---------------------------------- */}
-            {/* ---------------------------------- Feature Products: START ---------------------------------- */}
+
             <section className="features-section home-section">
                 <div className="container text-center">
                     <h1 className="mb-4 text-center">Featured Products</h1>
+
                     <div className="gallery-container mb-4">
                         {future.map(product => {
                             const catId = product.category.trim().toLowerCase().replace(/'/g, '').replace(/ /g, '-'); 

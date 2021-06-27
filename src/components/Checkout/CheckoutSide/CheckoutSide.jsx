@@ -6,7 +6,7 @@ export default function CheckoutSide(props) {
     useEffect(()=>{
         let newTotal =[];
         props.products.map(product => 
-            newTotal[product.id] = product.quantity * product.price
+            newTotal[product.id] = product.quantity*product.price
         )
         setSubTotal(parseFloat(newTotal.reduce((a, b) => a + b,0).toFixed(2)));
     },[props])
@@ -14,6 +14,7 @@ export default function CheckoutSide(props) {
         <div className='d-flex flex-column m-5'>
             <div className="mt-2 mb-5 row">
                 {props.products.map(product =>
+                // <>
                 <div className="d-flex mb-4"
                     key={product.id}
                 >
@@ -24,8 +25,9 @@ export default function CheckoutSide(props) {
                     <div className="col-6">
                             <h5 className="title">{product.title}</h5><p className="text"><small className="text-muted">{product.color.charAt(0).toUpperCase() + product.color.slice(1)} / {product.size}</small></p>
                     </div>
-                    <p className="text col-3">${ product.quantity * product.price }</p>
+                    <p className="text col-3">${ product.quantity*product.price}</p>
                 </div>
+                // </>
                 )}
                 <hr />
                 <div className="row mt-3 mb-4">
