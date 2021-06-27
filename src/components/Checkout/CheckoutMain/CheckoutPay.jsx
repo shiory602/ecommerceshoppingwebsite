@@ -2,24 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import thanks from "../../../images/thankyou.jpeg";
 
-export default function CheckoutPay(props) {
+export default function CheckoutPay() {
     return (
         <div className='d-flex flex-column m-5'>
             <h2>CGS</h2>
-            {/* <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item text-secondary">
-                        <Link className="text-reset disabled" role="button" aria-expanded="false">Cart</Link>
-                    </li>
-                    <li className="breadcrumb-item disabled text-secondary">
-                        <Link className="text-reset" role="button" aria-expanded="false">Information</Link>
-                    </li>
-                    <li className="breadcrumb-item disabled" aria-current="page">
-                        <Link className="text-reset" role="button" aria-expanded="false">Payment</Link>
-                    </li>
-                </ol>
-            </nav> */}
-
             <div className="card text-center">
                 <img src={thanks} className="card-img-top" alt="thank you" />
                 <div className="card-body">
