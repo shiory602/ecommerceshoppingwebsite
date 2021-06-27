@@ -6,8 +6,8 @@ This is a e-commerce website built with React.js which is for portfolio and not 
 We created this app to practice using context API, react-router. 
 
 # Author
-[Carlos Tutiya](https://github.com/ctutiya)
-[Gerardo Montero](https://github.com/GerMont01)
+[Carlos Tutiya](https://github.com/ctutiya) <br />
+[Gerardo Montero](https://github.com/GerMont01) <br />
 [Shiori Suzuki](https://github.com/shiory602)
 
 # UI design
